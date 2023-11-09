@@ -1066,7 +1066,7 @@
   <footer id="footer">
     <div class="container">
       <div class="copyright">
-        &copy; Copyright <strong><span>Montera 2023</span></strong>
+        &copy; Copyright <strong><span id="copyright-year"></span></strong>
       </div>
       <div class="credits">
 
@@ -1091,6 +1091,14 @@
 
   <script src="assets/js/main.js"></script> <!-- link sa main js -->
 
+  <script>
+    // Get the current year
+    var currentYear = new Date().getFullYear();
+  
+    // Update the content of the 'copyright-year' element with the current year
+    document.getElementById('copyright-year').textContent = currentYear;
+    
+  </script>
 </body>
 
 </html>
