@@ -24,18 +24,31 @@
 
   const navbarLinks = select("#navbar .scrollto", true);
   const navbarLinksActive = () => {
-    const position = window.scrollY + 200;
+    const viewportAnchor = window.scrollY + window.innerHeight * 0.4;
+    const isNearBottom = window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 2;
+
+    let activeLink = null;
 
     navbarLinks.forEach((link) => {
       if (!link.hash) return;
       const section = select(link.hash);
       if (!section) return;
 
-      if (position >= section.offsetTop && position <= section.offsetTop + section.offsetHeight) {
-        link.classList.add("active");
-      } else {
-        link.classList.remove("active");
+      const inSection =
+        viewportAnchor >= section.offsetTop &&
+        viewportAnchor < section.offsetTop + section.offsetHeight;
+
+      if (inSection) {
+        activeLink = link;
       }
+    });
+
+    if (!activeLink && isNearBottom) {
+      activeLink = [...navbarLinks].reverse().find((link) => link.hash && select(link.hash)) || null;
+    }
+
+    navbarLinks.forEach((link) => {
+      link.classList.toggle("active", link === activeLink);
     });
   };
 
@@ -123,6 +136,94 @@
       mirror: false,
     });
   });
+
+  const initGrabRotateCards = () => {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    const cards = select(
+      ".client-card, .service-card, .project-card, .experience-card, .skill-group-card, .cert-card",
+      true
+    );
+
+    if (!cards.length) return;
+
+    const clamp = (value, min, max) => Math.max(min, Math.min(max, value));
+
+    cards.forEach((card) => {
+      card.classList.add("grab-rotate-ready");
+
+      let pointerId = null;
+      let dragging = false;
+      let startX = 0;
+      let startY = 0;
+      let moved = false;
+
+      const setTransform = (tx, ty, rx, ry, rz) => {
+        card.style.setProperty("--grx", `${tx.toFixed(2)}px`);
+        card.style.setProperty("--gry", `${ty.toFixed(2)}px`);
+        card.style.setProperty("--rrx", `${rx.toFixed(2)}deg`);
+        card.style.setProperty("--rry", `${ry.toFixed(2)}deg`);
+        card.style.setProperty("--rrz", `${rz.toFixed(2)}deg`);
+      };
+
+      const resetTransform = () => {
+        card.classList.remove("is-grabbing");
+        setTransform(0, 0, 0, 0, 0);
+      };
+
+      card.addEventListener("pointerdown", (event) => {
+        if (event.button !== 0 && event.pointerType !== "touch") return;
+
+        pointerId = event.pointerId;
+        dragging = true;
+        moved = false;
+        startX = event.clientX;
+        startY = event.clientY;
+        card.classList.add("is-grabbing");
+        card.setPointerCapture(pointerId);
+      });
+
+      card.addEventListener("pointermove", (event) => {
+        if (!dragging || event.pointerId !== pointerId) return;
+
+        const dx = event.clientX - startX;
+        const dy = event.clientY - startY;
+        if (Math.abs(dx) > 3 || Math.abs(dy) > 3) moved = true;
+
+        const tx = clamp(dx * 0.16, -22, 22);
+        const ty = clamp(dy * 0.16, -16, 16);
+        const rx = clamp(-dy * 0.12, -10, 10);
+        const ry = clamp(dx * 0.12, -10, 10);
+        const rz = clamp(dx * 0.08, -7, 7);
+        setTransform(tx, ty, rx, ry, rz);
+
+        if (event.cancelable && moved) {
+          event.preventDefault();
+        }
+      });
+
+      card.addEventListener("pointerup", (event) => {
+        if (event.pointerId !== pointerId) return;
+        dragging = false;
+        pointerId = null;
+        card.releasePointerCapture(event.pointerId);
+        resetTransform();
+      });
+
+      card.addEventListener("pointercancel", (event) => {
+        if (event.pointerId !== pointerId) return;
+        dragging = false;
+        pointerId = null;
+        resetTransform();
+      });
+
+      card.addEventListener("pointerleave", () => {
+        if (!dragging) resetTransform();
+      });
+    });
+  };
+
+  window.addEventListener("load", initGrabRotateCards);
 
   const initGeoLines = () => {
     const canvas = document.getElementById("geo-lines-bg");

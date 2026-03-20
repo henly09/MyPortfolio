@@ -1353,10 +1353,19 @@ body {
 .service-card,
 .project-card,
 .contact-card {
+  --grx: 0px;
+  --gry: 0px;
+  --rrx: 0deg;
+  --rry: 0deg;
+  --rrz: 0deg;
   background: var(--panel);
   border: 1px solid var(--edge);
   box-shadow: 0 12px 34px rgba(0, 0, 0, 0.35), inset 0 0 0 1px rgba(255, 255, 255, 0.015);
   backdrop-filter: blur(8px);
+  transform: translate3d(var(--grx), var(--gry), 0) rotateX(var(--rrx)) rotateY(var(--rry)) rotateZ(var(--rrz));
+  transform-style: preserve-3d;
+  will-change: transform;
+  transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1), border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 .client-card h3,
@@ -1390,8 +1399,7 @@ body {
 .client-card:hover,
 .contact-card:hover {
   border-color: rgba(135, 167, 235, 0.45);
-  transform: translateY(-3px);
-  transition: transform 0.3s ease, border-color 0.3s ease;
+  --gry: -3px;
 }
 
 .contact-card p a {
@@ -1417,7 +1425,13 @@ body {
 }
 
 .experience-card,
-.skill-group-card {
+.skill-group-card,
+.cert-card {
+  --grx: 0px;
+  --gry: 0px;
+  --rrx: 0deg;
+  --rry: 0deg;
+  --rrz: 0deg;
   background: var(--panel);
   border: 1px solid var(--edge);
   border-radius: 14px;
@@ -1425,10 +1439,15 @@ body {
   backdrop-filter: blur(8px);
   padding: 22px;
   height: 100%;
+  transform: translate3d(var(--grx), var(--gry), 0) rotateX(var(--rrx)) rotateY(var(--rry)) rotateZ(var(--rrz));
+  transform-style: preserve-3d;
+  will-change: transform;
+  transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1), border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 .experience-card h3,
-.skill-group-card h3 {
+.skill-group-card h3,
+.cert-card h3 {
   margin: 0 0 8px;
   color: #f2f5ff;
   font-size: 22px;
@@ -1468,8 +1487,59 @@ body {
 }
 
 .experience-card:hover,
-.skill-group-card:hover {
+.skill-group-card:hover,
+.cert-card:hover {
   border-color: rgba(135, 167, 235, 0.45);
-  transform: translateY(-3px);
-  transition: transform 0.3s ease, border-color 0.3s ease;
+  --gry: -3px;
+}
+
+.cert-card {
+  overflow: hidden;
+}
+
+.cert-card a {
+  display: block;
+  color: inherit;
+}
+
+.cert-image {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  background: #0d1322;
+  border-bottom: 1px solid rgba(121, 141, 191, 0.3);
+}
+
+.cert-body {
+  padding-top: 14px;
+}
+
+.cert-body h3 {
+  font-size: 17px;
+  margin: 0;
+}
+
+.grab-rotate-ready {
+  cursor: grab;
+  touch-action: pan-y;
+}
+
+.grab-rotate-ready.is-grabbing {
+  cursor: grabbing;
+  z-index: 6;
+  box-shadow: 0 22px 48px rgba(0, 0, 0, 0.5), inset 0 0 0 1px rgba(203, 220, 255, 0.06);
+  transition: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .client-card,
+  .service-card,
+  .project-card,
+  .contact-card,
+  .experience-card,
+  .skill-group-card,
+  .cert-card {
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    transform: none;
+  }
 }
