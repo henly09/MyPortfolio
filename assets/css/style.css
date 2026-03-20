@@ -1415,3 +1415,61 @@ body {
 .back-to-top {
   background: linear-gradient(120deg, #2f67d8, #5f4fd7);
 }
+
+.experience-card,
+.skill-group-card {
+  background: var(--panel);
+  border: 1px solid var(--edge);
+  border-radius: 14px;
+  box-shadow: 0 12px 34px rgba(0, 0, 0, 0.35), inset 0 0 0 1px rgba(255, 255, 255, 0.015);
+  backdrop-filter: blur(8px);
+  padding: 22px;
+  height: 100%;
+}
+
+.experience-card h3,
+.skill-group-card h3 {
+  margin: 0 0 8px;
+  color: #f2f5ff;
+  font-size: 22px;
+}
+
+.experience-meta {
+  margin: 0 0 4px;
+  color: #95b8ff;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.experience-location {
+  margin: 0 0 10px;
+  color: #b2c2e6;
+  font-size: 13px;
+}
+
+.experience-card p {
+  color: var(--text-soft);
+}
+
+.skill-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.skill-pills span {
+  display: inline-block;
+  padding: 6px 12px;
+  border-radius: 999px;
+  font-size: 13px;
+  color: #d6e3ff;
+  background: rgba(55, 78, 131, 0.34);
+  border: 1px solid rgba(121, 141, 191, 0.35);
+}
+
+.experience-card:hover,
+.skill-group-card:hover {
+  border-color: rgba(135, 167, 235, 0.45);
+  transform: translateY(-3px);
+  transition: transform 0.3s ease, border-color 0.3s ease;
+}
