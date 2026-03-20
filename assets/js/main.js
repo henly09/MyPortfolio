@@ -137,93 +137,59 @@
     });
   });
 
-  const initGrabRotateCards = () => {
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  const initGalleryLightbox = (gallerySelector) => {
+    if (typeof PhotoSwipeLightbox === "undefined" || typeof PhotoSwipe === "undefined") return;
 
-    const cards = select(
-      ".client-card, .service-card, .project-card, .experience-card, .skill-group-card, .cert-card",
-      true
-    );
+    const gallery = select(gallerySelector);
+    if (!gallery) return;
 
-    if (!cards.length) return;
+    const links = gallery.querySelectorAll("a[href]");
+    if (!links.length) return;
 
-    const clamp = (value, min, max) => Math.max(min, Math.min(max, value));
+    links.forEach((link) => {
+      link.removeAttribute("target");
+      link.removeAttribute("rel");
 
-    cards.forEach((card) => {
-      card.classList.add("grab-rotate-ready");
+      const image = link.querySelector("img");
+      if (!image) return;
 
-      let pointerId = null;
-      let dragging = false;
-      let startX = 0;
-      let startY = 0;
-      let moved = false;
-
-      const setTransform = (tx, ty, rx, ry, rz) => {
-        card.style.setProperty("--grx", `${tx.toFixed(2)}px`);
-        card.style.setProperty("--gry", `${ty.toFixed(2)}px`);
-        card.style.setProperty("--rrx", `${rx.toFixed(2)}deg`);
-        card.style.setProperty("--rry", `${ry.toFixed(2)}deg`);
-        card.style.setProperty("--rrz", `${rz.toFixed(2)}deg`);
+      const setDimensions = (width, height) => {
+        if (!width || !height) return;
+        link.dataset.pswpWidth = width;
+        link.dataset.pswpHeight = height;
       };
 
-      const resetTransform = () => {
-        card.classList.remove("is-grabbing");
-        setTransform(0, 0, 0, 0, 0);
-      };
+      const source = image.currentSrc || image.src;
 
-      card.addEventListener("pointerdown", (event) => {
-        if (event.button !== 0 && event.pointerType !== "touch") return;
+      if (image.complete && image.naturalWidth && image.naturalHeight) {
+        setDimensions(image.naturalWidth, image.naturalHeight);
+      } else if (source) {
+        const preload = new Image();
+        preload.onload = () => setDimensions(preload.naturalWidth, preload.naturalHeight);
+        preload.src = source;
+      }
 
-        pointerId = event.pointerId;
-        dragging = true;
-        moved = false;
-        startX = event.clientX;
-        startY = event.clientY;
-        card.classList.add("is-grabbing");
-        card.setPointerCapture(pointerId);
-      });
-
-      card.addEventListener("pointermove", (event) => {
-        if (!dragging || event.pointerId !== pointerId) return;
-
-        const dx = event.clientX - startX;
-        const dy = event.clientY - startY;
-        if (Math.abs(dx) > 3 || Math.abs(dy) > 3) moved = true;
-
-        const tx = clamp(dx * 0.16, -22, 22);
-        const ty = clamp(dy * 0.16, -16, 16);
-        const rx = clamp(-dy * 0.12, -10, 10);
-        const ry = clamp(dx * 0.12, -10, 10);
-        const rz = clamp(dx * 0.08, -7, 7);
-        setTransform(tx, ty, rx, ry, rz);
-
-        if (event.cancelable && moved) {
-          event.preventDefault();
-        }
-      });
-
-      card.addEventListener("pointerup", (event) => {
-        if (event.pointerId !== pointerId) return;
-        dragging = false;
-        pointerId = null;
-        card.releasePointerCapture(event.pointerId);
-        resetTransform();
-      });
-
-      card.addEventListener("pointercancel", (event) => {
-        if (event.pointerId !== pointerId) return;
-        dragging = false;
-        pointerId = null;
-        resetTransform();
-      });
-
-      card.addEventListener("pointerleave", () => {
-        if (!dragging) resetTransform();
-      });
+      if (image.alt) {
+        link.dataset.pswpAlt = image.alt;
+      }
     });
+
+    const lightbox = new PhotoSwipeLightbox({
+      gallery: gallerySelector,
+      children: "a",
+      pswpModule: PhotoSwipe,
+      showHideAnimationType: "zoom",
+      bgOpacity: 0.9,
+      wheelToZoom: true,
+    });
+
+    lightbox.init();
   };
 
-  window.addEventListener("load", initGrabRotateCards);
+  window.addEventListener("load", () => {
+    initGalleryLightbox("#portfolio .project-gallery");
+    initGalleryLightbox("#certifications .cert-gallery");
+  });
 
   const initGeoLines = () => {
     const canvas = document.getElementById("geo-lines-bg");
