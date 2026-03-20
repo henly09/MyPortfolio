@@ -188,8 +188,7 @@ h1, h2, h3, h4, h5, h6 {
 #home {
   width: 100%;
   height: 100vh;
-  background: url("../img/pxfuel\(1\).jpg") top left;
-  background-size:cover;
+  background: #05060d;
 }
 #home:before {
   content: "";
@@ -947,4 +946,472 @@ section {
     width: auto;
     padding-right: 20px 15px;
   }
+}
+
+/*--------------------------------------------------------------
+# Client-Focused Refresh
+--------------------------------------------------------------*/
+:root {
+  --brand-900: #0f1f3d;
+  --brand-700: #1f3b73;
+  --accent: #2f80ed;
+  --text-900: #10223f;
+  --text-700: #3d4f68;
+  --surface: #f4f7fb;
+  --white: #ffffff;
+}
+
+body {
+  color: var(--text-700);
+  background: var(--surface);
+}
+
+.section-title p {
+  color: var(--text-700);
+  max-width: 860px;
+}
+
+#home {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  background: linear-gradient(120deg, rgba(5, 14, 29, 0.95), rgba(7, 18, 42, 0.9)), url("../img/hero-tech-bg.svg") center center / cover no-repeat;
+}
+
+#home::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: radial-gradient(circle at 82% 18%, rgba(40, 108, 220, 0.35), rgba(40, 108, 220, 0) 35%),
+    linear-gradient(160deg, rgba(8, 19, 40, 0.18) 0%, rgba(6, 11, 25, 0.74) 72%, rgba(3, 7, 16, 0.86) 100%);
+}
+
+#home::after {
+  content: "";
+  position: absolute;
+  inset: -20%;
+  z-index: 2;
+  background:
+    radial-gradient(circle at 30% 70%, rgba(44, 130, 255, 0.2), rgba(44, 130, 255, 0) 38%),
+    radial-gradient(circle at 78% 24%, rgba(129, 98, 255, 0.16), rgba(129, 98, 255, 0) 34%);
+  animation: auroraFloat 14s ease-in-out infinite alternate;
+  pointer-events: none;
+}
+
+#home .hero-container {
+  z-index: 3;
+}
+
+@keyframes auroraFloat {
+  from {
+    transform: translate3d(0, 0, 0) scale(1);
+    opacity: 0.65;
+  }
+  to {
+    transform: translate3d(-2%, 2%, 0) scale(1.03);
+    opacity: 0.9;
+  }
+}
+
+#home h1 {
+  max-width: 860px;
+  line-height: 1.1;
+  font-size: 56px;
+}
+
+#home p {
+  font-size: 24px;
+}
+
+.eyebrow {
+  margin-bottom: 16px;
+  color: #b5d6ff;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.hero-cta {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.hero-btn {
+  border-radius: 10px;
+  padding: 11px 18px;
+  font-weight: 600;
+}
+
+.profile-role {
+  color: #c0d4fb;
+  text-align: center;
+  font-size: 13px;
+  margin: 10px 0 0;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.client-card,
+.service-card,
+.project-card,
+.contact-card {
+  background: var(--white);
+  border-radius: 14px;
+  box-shadow: 0 12px 28px rgba(15, 31, 61, 0.08);
+}
+
+.client-card {
+  padding: 26px;
+  height: 100%;
+}
+
+.client-card h3 {
+  margin-bottom: 16px;
+  color: var(--text-900);
+  font-size: 24px;
+}
+
+.client-card ul {
+  margin: 0;
+  padding-left: 18px;
+}
+
+.client-card li {
+  margin-bottom: 10px;
+  color: var(--text-700);
+}
+
+.stack-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.stack-tags span {
+  display: inline-block;
+  padding: 6px 12px;
+  border-radius: 999px;
+  font-size: 13px;
+  color: var(--brand-700);
+  background: #eaf2ff;
+  border: 1px solid #d4e4ff;
+}
+
+.service-card {
+  padding: 24px;
+  height: 100%;
+  border: 1px solid #e6edf7;
+}
+
+.service-card i {
+  font-size: 28px;
+  color: var(--accent);
+}
+
+.service-card h4 {
+  font-size: 20px;
+  margin: 14px 0 8px;
+  color: var(--text-900);
+}
+
+.service-card p {
+  margin: 0;
+  color: var(--text-700);
+}
+
+.project-card {
+  overflow: hidden;
+  height: 100%;
+  border: 1px solid #e5ecf7;
+}
+
+.project-image {
+  width: 100%;
+  height: 240px;
+  object-fit: cover;
+  background: #dfe8f7;
+}
+
+.project-body {
+  padding: 20px;
+}
+
+.project-body h3 {
+  margin: 0 0 8px;
+  font-size: 23px;
+  color: var(--text-900);
+}
+
+.project-meta {
+  margin: 0 0 10px;
+  color: var(--brand-700);
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.project-body p {
+  margin-bottom: 0;
+  color: var(--text-700);
+}
+
+.contact-card {
+  padding: 24px;
+  text-align: center;
+  border: 1px solid #e5ecf7;
+}
+
+.contact-card i {
+  font-size: 25px;
+  color: var(--accent);
+}
+
+.contact-card h4 {
+  margin: 12px 0 6px;
+  color: var(--text-900);
+}
+
+.contact-card p {
+  margin: 0;
+}
+
+.contact-card p a {
+  color: var(--text-700);
+}
+
+.contact-card p a:hover {
+  color: var(--accent);
+}
+
+@media (max-width: 768px) {
+  #home h1 {
+    font-size: 34px;
+    line-height: 1.2;
+  }
+
+  #home p {
+    font-size: 19px;
+  }
+
+  .project-image {
+    height: 210px;
+  }
+}
+
+/*--------------------------------------------------------------
+# Black Minimalist + Geo Lines
+--------------------------------------------------------------*/
+:root {
+  --dark-0: #05060d;
+  --dark-1: #090b14;
+  --dark-2: #0f1321;
+  --line-blue: #3f93ff;
+  --line-violet: #8a65ff;
+  --text-main: #f1f4ff;
+  --text-soft: #9ea8c2;
+  --edge: rgba(98, 119, 167, 0.28);
+  --panel: rgba(10, 14, 26, 0.75);
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  color: var(--text-main);
+  background: radial-gradient(1300px 850px at 80% -20%, rgba(47, 90, 188, 0.2), transparent 60%),
+    linear-gradient(180deg, #060812 0%, #05060d 65%, #04050a 100%);
+}
+
+#geo-lines-bg {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -3;
+  pointer-events: none;
+}
+
+.bg-aura {
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 12% 12%, rgba(61, 131, 255, 0.13), transparent 34%),
+    radial-gradient(circle at 88% 84%, rgba(138, 101, 255, 0.11), transparent 30%),
+    linear-gradient(130deg, rgba(5, 8, 17, 0.3) 0%, rgba(3, 5, 11, 0.82) 82%);
+}
+
+#header {
+  background: rgba(6, 8, 15, 0.92);
+  border-right: 1px solid rgba(103, 121, 167, 0.2);
+  backdrop-filter: blur(16px);
+}
+
+#header .profile img {
+  border: 2px solid rgba(87, 114, 173, 0.55);
+}
+
+#header .profile h1 {
+  font-family: "Orbitron", sans-serif;
+  font-size: 21px;
+}
+
+.profile-role {
+  color: #95a9d9;
+}
+
+.nav-menu a,
+.nav-menu a:focus {
+  width: 100%;
+  box-sizing: border-box;
+  color: #91a0c5;
+  border-radius: 10px;
+}
+
+.nav-menu > ul,
+.nav-menu > ul > li {
+  width: 100%;
+}
+
+.nav-menu a:hover,
+.nav-menu .active,
+.nav-menu .active:focus,
+.nav-menu li:hover > a {
+  color: #eef2ff;
+  background: rgba(40, 62, 108, 0.35);
+}
+
+.nav-menu a i,
+.nav-menu a:focus i {
+  color: #7385b3;
+}
+
+#home {
+  background: transparent;
+  min-height: 100vh;
+}
+
+#home::before {
+  background: linear-gradient(180deg, rgba(4, 7, 14, 0.34), rgba(4, 7, 14, 0.84));
+}
+
+#home::after {
+  background:
+    radial-gradient(circle at 20% 70%, rgba(43, 114, 255, 0.16), rgba(43, 114, 255, 0) 40%),
+    radial-gradient(circle at 74% 20%, rgba(134, 104, 255, 0.12), rgba(134, 104, 255, 0) 32%);
+}
+
+#home h1 {
+  font-family: "Orbitron", sans-serif;
+  color: #f4f6ff;
+  text-shadow: 0 10px 28px rgba(0, 0, 0, 0.45);
+}
+
+#home p {
+  color: #d8e2ff;
+}
+
+.hero-btn.btn-primary {
+  background: linear-gradient(120deg, #356ee3, #6952de);
+  border: 0;
+}
+
+.hero-btn.btn-outline-light {
+  border-color: rgba(193, 207, 255, 0.55);
+  color: #e5edff;
+}
+
+.hero-btn.btn-outline-light:hover {
+  background: rgba(193, 207, 255, 0.1);
+  color: #ffffff;
+}
+
+.section-bg {
+  background: transparent;
+}
+
+.section-title h2 {
+  color: #e9eeff;
+  font-family: "Orbitron", sans-serif;
+  letter-spacing: 0.02em;
+}
+
+.section-title h2::after {
+  background: linear-gradient(120deg, var(--line-blue), var(--line-violet));
+}
+
+.section-title p,
+.project-body p,
+.service-card p,
+.client-card li,
+.contact-card p {
+  color: var(--text-soft);
+}
+
+.client-card,
+.service-card,
+.project-card,
+.contact-card {
+  background: var(--panel);
+  border: 1px solid var(--edge);
+  box-shadow: 0 12px 34px rgba(0, 0, 0, 0.35), inset 0 0 0 1px rgba(255, 255, 255, 0.015);
+  backdrop-filter: blur(8px);
+}
+
+.client-card h3,
+.service-card h4,
+.project-body h3,
+.contact-card h4 {
+  color: #f2f5ff;
+}
+
+.stack-tags span {
+  color: #d6e3ff;
+  background: rgba(55, 78, 131, 0.34);
+  border: 1px solid rgba(121, 141, 191, 0.35);
+}
+
+.service-card i,
+.contact-card i {
+  color: #7cb2ff;
+}
+
+.project-meta {
+  color: #95b8ff;
+}
+
+.project-image {
+  background: #101625;
+}
+
+.project-card:hover,
+.service-card:hover,
+.client-card:hover,
+.contact-card:hover {
+  border-color: rgba(135, 167, 235, 0.45);
+  transform: translateY(-3px);
+  transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.contact-card p a {
+  color: #d7e3ff;
+}
+
+.contact-card p a:hover {
+  color: #98beff;
+}
+
+#footer {
+  background: rgba(5, 7, 13, 0.9);
+  border-top: 1px solid rgba(98, 117, 163, 0.2);
+}
+
+#footer .credits,
+#footer .copyright {
+  color: #9dabcf;
+}
+
+.back-to-top {
+  background: linear-gradient(120deg, #2f67d8, #5f4fd7);
 }
