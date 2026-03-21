@@ -192,7 +192,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 #home:before {
   content: "";
-  background: rgba(5, 13, 24, 0.8);
+  background: rgba(5, 13, 24, 0.45);
   position: absolute;
   bottom: 0;
   top: 0;
@@ -1222,7 +1222,7 @@ body {
     linear-gradient(180deg, #060812 0%, #05060d 65%, #04050a 100%);
 }
 
-#geo-lines-bg {
+#particles-js {
   position: fixed;
   inset: 0;
   width: 100%;
@@ -1239,7 +1239,7 @@ body {
   background:
     radial-gradient(circle at 12% 12%, rgba(61, 131, 255, 0.13), transparent 34%),
     radial-gradient(circle at 88% 84%, rgba(138, 101, 255, 0.11), transparent 30%),
-    linear-gradient(130deg, rgba(5, 8, 17, 0.3) 0%, rgba(3, 5, 11, 0.82) 82%);
+    linear-gradient(130deg, rgba(5, 8, 17, 0.16) 0%, rgba(3, 5, 11, 0.56) 82%);
 }
 
 #header {
@@ -1293,7 +1293,7 @@ body {
 }
 
 #home::before {
-  background: linear-gradient(180deg, rgba(4, 7, 14, 0.34), rgba(4, 7, 14, 0.84));
+  background: linear-gradient(180deg, rgba(4, 7, 14, 0.18), rgba(4, 7, 14, 0.56));
 }
 
 #home::after {

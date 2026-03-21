@@ -191,93 +191,89 @@
     initGalleryLightbox("#certifications .cert-gallery");
   });
 
-  const initGeoLines = () => {
-    const canvas = document.getElementById("geo-lines-bg");
-    if (!canvas) return;
+  const initParticlesBackground = () => {
+    if (typeof particlesJS !== "function") return;
+    if (!document.getElementById("particles-js")) return;
 
-    const ctx = canvas.getContext("2d");
-    if (!ctx) return;
-
-    let width = 0;
-    let height = 0;
-    let nodes = [];
-    const nodeCount = 56;
-    const maxLinkDistance = 150;
-    const speed = 0.28;
-    let animationId = null;
-
-    const resize = () => {
-      const ratio = Math.min(window.devicePixelRatio || 1, 2);
-      width = window.innerWidth;
-      height = window.innerHeight;
-      canvas.width = Math.floor(width * ratio);
-      canvas.height = Math.floor(height * ratio);
-      canvas.style.width = `${width}px`;
-      canvas.style.height = `${height}px`;
-      ctx.setTransform(ratio, 0, 0, ratio, 0, 0);
-
-      nodes = Array.from({ length: nodeCount }, () => ({
-        x: Math.random() * width,
-        y: Math.random() * height,
-        vx: (Math.random() - 0.5) * speed,
-        vy: (Math.random() - 0.5) * speed,
-        r: Math.random() * 1.8 + 1,
-      }));
-    };
-
-    const draw = () => {
-      ctx.clearRect(0, 0, width, height);
-
-      for (let i = 0; i < nodes.length; i += 1) {
-        const a = nodes[i];
-        a.x += a.vx;
-        a.y += a.vy;
-
-        if (a.x < 0 || a.x > width) a.vx *= -1;
-        if (a.y < 0 || a.y > height) a.vy *= -1;
-
-        for (let j = i + 1; j < nodes.length; j += 1) {
-          const b = nodes[j];
-          const dx = a.x - b.x;
-          const dy = a.y - b.y;
-          const dist = Math.hypot(dx, dy);
-
-          if (dist < maxLinkDistance) {
-            const alpha = (1 - dist / maxLinkDistance) * 0.22;
-            ctx.strokeStyle = `rgba(73, 168, 255, ${alpha})`;
-            ctx.lineWidth = 1;
-            ctx.beginPath();
-            ctx.moveTo(a.x, a.y);
-            ctx.lineTo(b.x, b.y);
-            ctx.stroke();
-          }
-        }
-      }
-
-      nodes.forEach((n, index) => {
-        const hue = index % 7 === 0 ? "152, 113, 255" : "80, 185, 255";
-        ctx.fillStyle = `rgba(${hue}, 0.68)`;
-        ctx.beginPath();
-        ctx.arc(n.x, n.y, n.r, 0, Math.PI * 2);
-        ctx.fill();
-      });
-
-      animationId = window.requestAnimationFrame(draw);
-    };
-
-    const handleVisibility = () => {
-      if (document.hidden) {
-        if (animationId) window.cancelAnimationFrame(animationId);
-      } else {
-        draw();
-      }
-    };
-
-    resize();
-    draw();
-    window.addEventListener("resize", resize);
-    document.addEventListener("visibilitychange", handleVisibility);
+    particlesJS("particles-js", {
+      particles: {
+        number: {
+          value: 140,
+          density: {
+            enable: true,
+            value_area: 1100,
+          },
+        },
+        color: {
+          value: ["#4fa5ff", "#8c6bff", "#6dd5fa"],
+        },
+        shape: {
+          type: "circle",
+        },
+        opacity: {
+          value: 0.62,
+          random: true,
+        },
+        size: {
+          value: 3.3,
+          random: true,
+        },
+        line_linked: {
+          enable: true,
+          distance: 130,
+          color: "#89b6ff",
+          opacity: 0.52,
+          width: 1.2,
+        },
+        move: {
+          enable: true,
+          speed: 1.4,
+          direction: "none",
+          random: true,
+          straight: false,
+          out_mode: "out",
+          bounce: false,
+        },
+      },
+      interactivity: {
+        detect_on: "canvas",
+        events: {
+          onhover: {
+            enable: true,
+            mode: ["grab", "bubble"],
+          },
+          onclick: {
+            enable: true,
+            mode: ["push", "repulse"],
+          },
+          resize: true,
+        },
+        modes: {
+          grab: {
+            distance: 150,
+            line_linked: {
+              opacity: 0.75,
+            },
+          },
+          bubble: {
+            distance: 220,
+            size: 6.5,
+            duration: 2,
+            opacity: 0.82,
+            speed: 3,
+          },
+          repulse: {
+            distance: 180,
+            duration: 0.45,
+          },
+          push: {
+            particles_nb: 5,
+          },
+        },
+      },
+      retina_detect: true,
+    });
   };
 
-  window.addEventListener("load", initGeoLines);
+  window.addEventListener("load", initParticlesBackground);
 })();
