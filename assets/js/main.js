@@ -277,3 +277,42 @@
 
   window.addEventListener("load", initParticlesBackground);
 })();
+
+
+// Add this to your main.js or in a script tag at the end of body
+
+// ===== Certifications Filter =====
+document.addEventListener('DOMContentLoaded', function () {
+  const filterButtons = document.querySelectorAll('.filter-btn');
+  const certItems = document.querySelectorAll('.cert-item');
+
+  filterButtons.forEach(button => {
+    button.addEventListener('click', function () {
+      // Remove active class from all buttons
+      filterButtons.forEach(btn => btn.classList.remove('active'));
+      // Add active class to clicked button
+      this.classList.add('active');
+
+      const filterValue = this.getAttribute('data-filter');
+
+      certItems.forEach(item => {
+        if (filterValue === 'all' || item.getAttribute('data-category').includes(filterValue)) {
+          item.classList.remove('hidden');
+          item.style.animation = 'fadeIn 0.4s ease';
+        } else {
+          item.classList.add('hidden');
+        }
+      });
+    });
+  });
+});
+
+// Add fadeIn keyframe if not already present
+const style = document.createElement('style');
+style.textContent = `
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+`;
+document.head.appendChild(style);
