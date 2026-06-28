@@ -279,18 +279,14 @@
 })();
 
 
-// Add this to your main.js or in a script tag at the end of body
-
 // ===== Certifications Filter =====
-document.addEventListener('DOMContentLoaded', function () {
+document.addEventListener('DOMContentLoaded', function() {
   const filterButtons = document.querySelectorAll('.filter-btn');
   const certItems = document.querySelectorAll('.cert-item');
 
   filterButtons.forEach(button => {
-    button.addEventListener('click', function () {
-      // Remove active class from all buttons
+    button.addEventListener('click', function() {
       filterButtons.forEach(btn => btn.classList.remove('active'));
-      // Add active class to clicked button
       this.classList.add('active');
 
       const filterValue = this.getAttribute('data-filter');

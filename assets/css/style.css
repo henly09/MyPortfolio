@@ -1,3 +1,4 @@
+
 body {
   font-family: "Open Sans", sans-serif;
   color: #272829;
@@ -13,21 +14,14 @@ a:hover {
   text-decoration: none;
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
+h1, h2, h3, h4, h5, h6 {
   font-family: "Raleway", sans-serif;
 }
 
-/* Add to your existing CSS file */
-
-/* ===== Certifications Section ===== */
+/* ===== Certifications Section - Dark Theme ===== */
 .certifications {
   padding: 60px 0;
-  background: #f8faff;
+  background: transparent;
 }
 
 .certifications .cert-filters {
@@ -40,43 +34,53 @@ h6 {
 
 .certifications .filter-btn {
   padding: 8px 22px;
-  border: 2px solid #e0e6ed;
-  background: transparent;
+  border: 1px solid rgba(103, 121, 167, 0.25);
+  background: rgba(10, 14, 26, 0.6);
   border-radius: 50px;
   font-size: 13px;
   font-weight: 600;
-  color: #5a6a7e;
+  color: #91a0c5;
   cursor: pointer;
   transition: all 0.3s ease;
   letter-spacing: 0.3px;
+  backdrop-filter: blur(8px);
 }
 
 .certifications .filter-btn:hover {
-  border-color: #4facfe;
-  color: #4facfe;
-  background: rgba(79, 172, 254, 0.05);
+  border-color: #3f93ff;
+  color: #eef2ff;
+  background: rgba(47, 90, 188, 0.2);
 }
 
 .certifications .filter-btn.active {
-  border-color: #4facfe;
-  background: #4facfe;
+  border-color: #3f93ff;
+  background: linear-gradient(120deg, #356ee3, #6952de);
   color: #fff;
-  box-shadow: 0 4px 15px rgba(79, 172, 254, 0.3);
+  box-shadow: 0 4px 15px rgba(53, 110, 227, 0.3);
 }
 
 .certifications .cert-card {
-  background: #ffffff;
-  border-radius: 16px;
+  --grx: 0px;
+  --gry: 0px;
+  --rrx: 0deg;
+  --rry: 0deg;
+  --rrz: 0deg;
+  background: rgba(10, 14, 26, 0.75);
+  border: 1px solid rgba(98, 119, 167, 0.28);
+  border-radius: 14px;
   padding: 22px 20px 18px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
-  transition: all 0.35s ease;
-  border: 1px solid rgba(0, 0, 0, 0.04);
+  box-shadow: 0 12px 34px rgba(0, 0, 0, 0.35), inset 0 0 0 1px rgba(255, 255, 255, 0.015);
+  backdrop-filter: blur(8px);
   height: 100%;
   display: flex;
   align-items: flex-start;
   gap: 16px;
   position: relative;
   overflow: hidden;
+  transform: translate3d(var(--grx), var(--gry), 0) rotateX(var(--rrx)) rotateY(var(--rry)) rotateZ(var(--rrz));
+  transform-style: preserve-3d;
+  will-change: transform;
+  transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1), border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 .certifications .cert-card::before {
@@ -86,7 +90,7 @@ h6 {
   left: 0;
   right: 0;
   height: 3px;
-  background: linear-gradient(90deg, #4facfe, #00c6fb);
+  background: linear-gradient(90deg, #3f93ff, #8a65ff);
   opacity: 0;
   transition: opacity 0.3s ease;
 }
@@ -96,9 +100,9 @@ h6 {
 }
 
 .certifications .cert-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 12px 40px rgba(79, 172, 254, 0.12);
-  border-color: rgba(79, 172, 254, 0.12);
+  border-color: rgba(135, 167, 235, 0.45);
+  --gry: -3px;
+  box-shadow: 0 18px 44px rgba(0, 0, 0, 0.5), inset 0 0 0 1px rgba(255, 255, 255, 0.02);
 }
 
 .certifications .cert-icon {
@@ -106,19 +110,21 @@ h6 {
   width: 48px;
   height: 48px;
   border-radius: 12px;
-  background: linear-gradient(135deg, #f0f7ff, #e6f0fa);
+  background: rgba(55, 78, 131, 0.34);
+  border: 1px solid rgba(121, 141, 191, 0.2);
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 22px;
-  color: #4facfe;
+  color: #7cb2ff;
   transition: all 0.3s ease;
 }
 
 .certifications .cert-card:hover .cert-icon {
-  background: linear-gradient(135deg, #4facfe, #00c6fb);
+  background: linear-gradient(120deg, #356ee3, #6952de);
   color: #fff;
   transform: scale(1.05);
+  border-color: transparent;
 }
 
 .certifications .cert-body {
@@ -134,22 +140,23 @@ h6 {
   letter-spacing: 0.8px;
   padding: 3px 14px;
   border-radius: 50px;
-  background: #f0f4f8;
-  color: #4a5a6e;
+  background: rgba(55, 78, 131, 0.3);
+  color: #95b8ff;
+  border: 1px solid rgba(121, 141, 191, 0.2);
   margin-bottom: 4px;
 }
 
 .certifications .cert-body h3 {
   font-size: 15px;
   font-weight: 600;
-  color: #1a2332;
+  color: #f2f5ff;
   margin-bottom: 2px;
   line-height: 1.3;
 }
 
 .certifications .cert-meta {
   font-size: 13px;
-  color: #7a8a9e;
+  color: #9ea8c2;
   margin-bottom: 8px;
   font-weight: 400;
 }
@@ -159,9 +166,9 @@ h6 {
   align-items: center;
   gap: 16px;
   font-size: 12px;
-  color: #8a9aae;
+  color: #7a8aaa;
   padding-top: 8px;
-  border-top: 1px solid #f0f4f8;
+  border-top: 1px solid rgba(98, 119, 167, 0.2);
 }
 
 .certifications .cert-footer i {
@@ -170,16 +177,16 @@ h6 {
 }
 
 .certifications .cert-date {
-  color: #6a7a8e;
+  color: #8a9abb;
 }
 
 .certifications .cert-verify {
-  color: #34a853;
+  color: #4ade80;
   font-weight: 500;
 }
 
 .certifications .cert-verify i {
-  color: #34a853;
+  color: #4ade80;
 }
 
 /* ===== Certifications Animation ===== */
@@ -202,12 +209,18 @@ h6 {
 
   .certifications .cert-footer {
     justify-content: center;
+    flex-wrap: wrap;
   }
 
   .certifications .filter-btn {
     font-size: 12px;
     padding: 6px 16px;
   }
+}
+
+/* Remove the duplicate .cert-card from the original CSS to avoid conflicts */
+.cert-card:not(.certifications .cert-card) {
+  /* Keep original if needed elsewhere */
 }
 
 /*--------------------------------------------------------------
@@ -270,8 +283,7 @@ h6 {
   text-align-last: center;
   font-family: "Poppins", sans-serif;
 }
-#header .profile h1 a,
-#header .profile h1 a:hover {
+#header .profile h1 a, #header .profile h1 a:hover {
   color: #fff;
   text-decoration: none;
 }
@@ -324,8 +336,7 @@ h6 {
   position: relative;
   white-space: nowrap;
 }
-.nav-menu a,
-.nav-menu a:focus {
+.nav-menu a, .nav-menu a:focus {
   display: flex;
   align-items: center;
   color: #a8a9b4;
@@ -334,23 +345,16 @@ h6 {
   transition: 0.3s;
   font-size: 15px;
 }
-.nav-menu a i,
-.nav-menu a:focus i {
+.nav-menu a i, .nav-menu a:focus i {
   font-size: 24px;
   padding-right: 8px;
   color: #6f7180;
 }
-.nav-menu a:hover,
-.nav-menu .active,
-.nav-menu .active:focus,
-.nav-menu li:hover > a {
+.nav-menu a:hover, .nav-menu .active, .nav-menu .active:focus, .nav-menu li:hover > a {
   text-decoration: none;
   color: #fff;
 }
-.nav-menu a:hover i,
-.nav-menu .active i,
-.nav-menu .active:focus i,
-.nav-menu li:hover > a i {
+.nav-menu a:hover i, .nav-menu .active i, .nav-menu .active:focus i, .nav-menu li:hover > a i {
   color: #ffffff;
 }
 
@@ -668,9 +672,9 @@ section {
   margin-bottom: 5px;
   transition: all 0.3s ease-in-out;
 }
-.portfolio #portfolio-flters li:hover,
-.portfolio #portfolio-flters li.filter-active {
+.portfolio #portfolio-flters li:hover, .portfolio #portfolio-flters li.filter-active {
   color: #000000;
+
 }
 .portfolio #portfolio-flters li:last-child {
   margin-right: 0;
@@ -743,20 +747,14 @@ section {
   margin-top: 20px;
   position: relative;
 }
-.portfolio-details
-  .portfolio-details-slider
-  .swiper-pagination
-  .swiper-pagination-bullet {
+.portfolio-details .portfolio-details-slider .swiper-pagination .swiper-pagination-bullet {
   width: 12px;
   height: 12px;
   background-color: #fff;
   opacity: 1;
   border: 1px solid #545455;
 }
-.portfolio-details
-  .portfolio-details-slider
-  .swiper-pagination
-  .swiper-pagination-bullet-active {
+.portfolio-details .portfolio-details-slider .swiper-pagination .swiper-pagination-bullet-active {
   background-color: #656666;
 }
 .portfolio-details .portfolio-info {
@@ -840,8 +838,7 @@ section {
 /*--------------------------------------------------------------
 # Testimonials
 --------------------------------------------------------------*/
-.testimonials .testimonials-carousel,
-.testimonials .testimonials-slider {
+.testimonials .testimonials-carousel, .testimonials .testimonials-slider {
   overflow: hidden;
 }
 .testimonials .testimonial-item {
@@ -865,8 +862,7 @@ section {
   color: #999;
   margin: 0;
 }
-.testimonials .testimonial-item .quote-icon-left,
-.testimonials .testimonial-item .quote-icon-right {
+.testimonials .testimonial-item .quote-icon-left, .testimonials .testimonial-item .quote-icon-right {
   color: #c3e8fa;
   font-size: 26px;
 }
@@ -979,9 +975,7 @@ section {
   background: #5e5f5f;
   color: #fff;
 }
-.contact .info .email:hover i,
-.contact .info .address:hover i,
-.contact .info .phone:hover i {
+.contact .info .email:hover i, .contact .info .address:hover i, .contact .info .phone:hover i {
   background: #606161;
   color: #fff;
 }
@@ -1044,8 +1038,7 @@ section {
 .contact .php-email-form label {
   padding-bottom: 8px;
 }
-.contact .php-email-form input,
-.contact .php-email-form textarea {
+.contact .php-email-form input, .contact .php-email-form textarea {
   border-radius: 0;
   box-shadow: none;
   font-size: 14px;
@@ -1056,7 +1049,7 @@ section {
 .contact .php-email-form textarea {
   padding: 10px 15px;
 }
-.contact .php-email-form button[type="submit"] {
+.contact .php-email-form button[type=submit] {
   background: #767676;
   border: 0;
   padding: 10px 24px;
@@ -1064,7 +1057,7 @@ section {
   transition: 0.4s;
   border-radius: 4px;
 }
-.contact .php-email-form button[type="submit"]:hover {
+.contact .php-email-form button[type=submit]:hover {
   background: #4a4b4b;
 }
 @-webkit-keyframes animate-loading {
@@ -1150,7 +1143,7 @@ section {
 
 #footer .credits a:hover {
   transition: 0.3s;
-}
+} 
 
 @media (max-width: 1199px) {
   #footer {
@@ -1187,9 +1180,7 @@ body {
   position: relative;
   overflow: hidden;
   isolation: isolate;
-  background:
-    linear-gradient(120deg, rgba(5, 14, 29, 0.95), rgba(7, 18, 42, 0.9)),
-    url("../img/hero-tech-bg.svg") center center / cover no-repeat;
+  background: linear-gradient(120deg, rgba(5, 14, 29, 0.95), rgba(7, 18, 42, 0.9)), url("../img/hero-tech-bg.svg") center center / cover no-repeat;
 }
 
 #home::before {
@@ -1197,18 +1188,8 @@ body {
   position: absolute;
   inset: 0;
   z-index: 1;
-  background:
-    radial-gradient(
-      circle at 82% 18%,
-      rgba(40, 108, 220, 0.35),
-      rgba(40, 108, 220, 0) 35%
-    ),
-    linear-gradient(
-      160deg,
-      rgba(8, 19, 40, 0.18) 0%,
-      rgba(6, 11, 25, 0.74) 72%,
-      rgba(3, 7, 16, 0.86) 100%
-    );
+  background: radial-gradient(circle at 82% 18%, rgba(40, 108, 220, 0.35), rgba(40, 108, 220, 0) 35%),
+    linear-gradient(160deg, rgba(8, 19, 40, 0.18) 0%, rgba(6, 11, 25, 0.74) 72%, rgba(3, 7, 16, 0.86) 100%);
 }
 
 #home::after {
@@ -1217,16 +1198,8 @@ body {
   inset: -20%;
   z-index: 2;
   background:
-    radial-gradient(
-      circle at 30% 70%,
-      rgba(44, 130, 255, 0.2),
-      rgba(44, 130, 255, 0) 38%
-    ),
-    radial-gradient(
-      circle at 78% 24%,
-      rgba(129, 98, 255, 0.16),
-      rgba(129, 98, 255, 0) 34%
-    );
+    radial-gradient(circle at 30% 70%, rgba(44, 130, 255, 0.2), rgba(44, 130, 255, 0) 38%),
+    radial-gradient(circle at 78% 24%, rgba(129, 98, 255, 0.16), rgba(129, 98, 255, 0) 34%);
   animation: auroraFloat 14s ease-in-out infinite alternate;
   pointer-events: none;
 }
@@ -1450,12 +1423,7 @@ body {
 body {
   font-family: "Poppins", sans-serif;
   color: var(--text-main);
-  background:
-    radial-gradient(
-      1300px 850px at 80% -20%,
-      rgba(47, 90, 188, 0.2),
-      transparent 60%
-    ),
+  background: radial-gradient(1300px 850px at 80% -20%, rgba(47, 90, 188, 0.2), transparent 60%),
     linear-gradient(180deg, #060812 0%, #05060d 65%, #04050a 100%);
 }
 
@@ -1474,16 +1442,8 @@ body {
   z-index: -2;
   pointer-events: none;
   background:
-    radial-gradient(
-      circle at 12% 12%,
-      rgba(61, 131, 255, 0.13),
-      transparent 34%
-    ),
-    radial-gradient(
-      circle at 88% 84%,
-      rgba(138, 101, 255, 0.11),
-      transparent 30%
-    ),
+    radial-gradient(circle at 12% 12%, rgba(61, 131, 255, 0.13), transparent 34%),
+    radial-gradient(circle at 88% 84%, rgba(138, 101, 255, 0.11), transparent 30%),
     linear-gradient(130deg, rgba(5, 8, 17, 0.16) 0%, rgba(3, 5, 11, 0.56) 82%);
 }
 
@@ -1538,25 +1498,13 @@ body {
 }
 
 #home::before {
-  background: linear-gradient(
-    180deg,
-    rgba(4, 7, 14, 0.18),
-    rgba(4, 7, 14, 0.56)
-  );
+  background: linear-gradient(180deg, rgba(4, 7, 14, 0.18), rgba(4, 7, 14, 0.56));
 }
 
 #home::after {
   background:
-    radial-gradient(
-      circle at 20% 70%,
-      rgba(43, 114, 255, 0.16),
-      rgba(43, 114, 255, 0) 40%
-    ),
-    radial-gradient(
-      circle at 74% 20%,
-      rgba(134, 104, 255, 0.12),
-      rgba(134, 104, 255, 0) 32%
-    );
+    radial-gradient(circle at 20% 70%, rgba(43, 114, 255, 0.16), rgba(43, 114, 255, 0) 40%),
+    radial-gradient(circle at 74% 20%, rgba(134, 104, 255, 0.12), rgba(134, 104, 255, 0) 32%);
 }
 
 #home h1 {
@@ -1617,18 +1565,12 @@ body {
   --rrz: 0deg;
   background: var(--panel);
   border: 1px solid var(--edge);
-  box-shadow:
-    0 12px 34px rgba(0, 0, 0, 0.35),
-    inset 0 0 0 1px rgba(255, 255, 255, 0.015);
+  box-shadow: 0 12px 34px rgba(0, 0, 0, 0.35), inset 0 0 0 1px rgba(255, 255, 255, 0.015);
   backdrop-filter: blur(8px);
-  transform: translate3d(var(--grx), var(--gry), 0) rotateX(var(--rrx))
-    rotateY(var(--rry)) rotateZ(var(--rrz));
+  transform: translate3d(var(--grx), var(--gry), 0) rotateX(var(--rrx)) rotateY(var(--rry)) rotateZ(var(--rrz));
   transform-style: preserve-3d;
   will-change: transform;
-  transition:
-    transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1),
-    border-color 0.3s ease,
-    box-shadow 0.3s ease;
+  transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1), border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 .client-card h3,
@@ -1698,20 +1640,14 @@ body {
   background: var(--panel);
   border: 1px solid var(--edge);
   border-radius: 14px;
-  box-shadow:
-    0 12px 34px rgba(0, 0, 0, 0.35),
-    inset 0 0 0 1px rgba(255, 255, 255, 0.015);
+  box-shadow: 0 12px 34px rgba(0, 0, 0, 0.35), inset 0 0 0 1px rgba(255, 255, 255, 0.015);
   backdrop-filter: blur(8px);
   padding: 22px;
   height: 100%;
-  transform: translate3d(var(--grx), var(--gry), 0) rotateX(var(--rrx))
-    rotateY(var(--rry)) rotateZ(var(--rrz));
+  transform: translate3d(var(--grx), var(--gry), 0) rotateX(var(--rrx)) rotateY(var(--rry)) rotateZ(var(--rrz));
   transform-style: preserve-3d;
   will-change: transform;
-  transition:
-    transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1),
-    border-color 0.3s ease,
-    box-shadow 0.3s ease;
+  transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1), border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 .experience-card h3,
@@ -1796,9 +1732,7 @@ body {
 .grab-rotate-ready.is-grabbing {
   cursor: grabbing;
   z-index: 6;
-  box-shadow:
-    0 22px 48px rgba(0, 0, 0, 0.5),
-    inset 0 0 0 1px rgba(203, 220, 255, 0.06);
+  box-shadow: 0 22px 48px rgba(0, 0, 0, 0.5), inset 0 0 0 1px rgba(203, 220, 255, 0.06);
   transition: none;
 }
 
@@ -1810,9 +1744,7 @@ body {
   .experience-card,
   .skill-group-card,
   .cert-card {
-    transition:
-      border-color 0.2s ease,
-      box-shadow 0.2s ease;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
     transform: none;
   }
 }
